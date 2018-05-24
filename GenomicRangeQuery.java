@@ -1,25 +1,16 @@
 class Solution {
-
+    // Detected time complexity: O(N + M)
     int[] solution(String S, int[] P, int[] Q) {
         int[][] c = new int[S.length()][4];
         int[] r = new int[P.length];
         int[] x = new int[4];
 
         for (int i = 0; i < S.length(); i++) {
-            switch (S.charAt(i)) {
-                case 'A':
-                    x[0]++;
-                    break;
-                case 'C':
-                    x[1]++;
-                    break;
-                case 'G':
-                    x[2]++;
-                    break;
-                default:
-                    x[3]++;
-                    break;
-            }
+            char b = S.charAt(i);
+            if (b == 'A') x[0]++;
+            else if (b == 'C') x[1]++;
+            else if (b == 'G') x[2]++;
+            else x[3]++;
 
             System.arraycopy(x, 0, c[i], 0, x.length);
         }
