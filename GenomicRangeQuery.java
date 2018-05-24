@@ -21,22 +21,19 @@ class Solution {
                     break;
             }
 
-            c[i][0] = x[0];
-            c[i][1] = x[1];
-            c[i][2] = x[2];
-            c[i][3] = x[3];
+            System.arraycopy(x, 0, c[i], 0, x.length);
         }
 
         for (int i = 0; i < r.length; i++) {
-            x[0] = P[i] > 0 ? c[Q[i]][0] - c[P[i] - 1][0] : c[Q[i]][0];
-            x[1] = P[i] > 0 ? c[Q[i]][1] - c[P[i] - 1][1] : c[Q[i]][1];
-            x[2] = P[i] > 0 ? c[Q[i]][2] - c[P[i] - 1][2] : c[Q[i]][2];
-            x[3] = P[i] > 0 ? c[Q[i]][3] - c[P[i] - 1][3] : c[Q[i]][3];
+            for (int j = 0; j < x.length; j++)
+                x[j] = P[i] > 0 ? c[Q[i]][j] - c[P[i] - 1][j] : c[Q[i]][j];
 
-            if (x[0] > 0) r[i] = 1;
-            else if (x[1] > 0) r[i] = 2;
-            else if (x[2] > 0) r[i] = 3;
-            else r[i] = 4;
+            for (int j = 0; j < x.length; j++) {
+                if (x[j] > 0) {
+                    r[i] = j + 1;
+                    break;
+                }
+            }
         }
 
         return r;
